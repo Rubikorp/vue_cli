@@ -4,7 +4,8 @@
 <!--    <MainPage/>-->
 <!--    <BlockDetails/>-->
 <!--    <ArticlesNews/>-->
-    <ProjectPage/>
+    <!-- <ProjectPage/> -->
+    <ProjectDetail />
     <FooterComponent/>
   </div>
 </template>
@@ -16,6 +17,7 @@ import BlockDetails from "@/pages/BlockDetails";
 import HeaderComponent from "@/components/HeaderComponent";
 import FooterComponent from "@/components/FooterComponent";
 import ProjectPage from "@/pages/ProjectPage";
+import ProjectDetail from "./pages/ProjectDetail.vue";
 
 export default {
   components: {
@@ -23,6 +25,7 @@ export default {
     BlockDetails,
     ArticlesNews,
     ProjectPage,
+    ProjectDetail,
     HeaderComponent,
     FooterComponent,
   }

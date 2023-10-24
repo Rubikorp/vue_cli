@@ -69,6 +69,9 @@ export default {
 
 .project {
   position: relative;
+  &__img {
+    max-width: 582px;
+  }
   &__fig {
     position: relative;
   }

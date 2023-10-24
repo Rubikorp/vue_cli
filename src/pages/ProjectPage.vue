@@ -2,36 +2,36 @@
   <section class="heading-page">
     <div class="heading-page__block-position">
       <div class="heading-page__block-head">
-        <h1 class="heading-page__head">
-          Our Project
-        </h1>
-        <p class="heading-page__dsc">
-          Home / Blog
-        </p>
+        <h1 class="heading-page__head">Our Project</h1>
+        <p class="heading-page__dsc">Home / Blog</p>
       </div>
     </div>
   </section>
   <div class="tags-div center">
     <nav class="tags">
       <button
-          :class="[tag.isActive ? 'btn-active' : ''] + ' ' + 'tags__btn' "
-          v-for="tag in tags"
-          @click="clickTag(tag.id)">
-        {{tag.name}}
+        :class="[tag.isActive ? 'btn-active' : ''] + ' ' + 'tags__btn'"
+        v-for="(tag, index) in tags"
+        :key="index"
+        @click="clickTag(tag.id)"
+      >
+        {{ tag.name }}
       </button>
     </nav>
   </div>
   <div class="project-comp center">
     <ProjectComponent
-        v-for="article in currenTagArticles" :article="article"
-        :clickFav="clickFav"/>
+      v-for="(article, index) in currenTagArticles"
+      :key="index"
+      :article="article"
+      :clickFav="clickFav"
+    />
   </div>
-  <PaginationComponent/>
-
+  <PaginationComponent />
 </template>
 
 <script>
-import { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from "uuid";
 import PaginationComponent from "@/components/PaginationComponent";
 import ProjectComponent from "@/components/ProjectComponent";
 
@@ -39,7 +39,7 @@ export default {
   name: "ProjectPage",
   components: {
     PaginationComponent,
-    ProjectComponent
+    ProjectComponent,
   },
   data() {
     return {
@@ -71,7 +71,7 @@ export default {
         {
           id: uuidv4(),
           tag: "Bathroom",
-          img: './src/assets/img/ourproject/art-1.png',
+          img: require("@/assets/img/ourproject/art-1.png"),
           head: "Minimal Bedroom",
           dsc: "Decor / Artchitecture",
           favorite: false,
@@ -79,7 +79,7 @@ export default {
         {
           id: uuidv4(),
           tag: "Bathroom",
-          img: './src/assets/img/ourproject/art-2.png',
+          img: require("@/assets/img/ourproject/art-2.png"),
           head: "Minimal Bedroom",
           dsc: "Decor / Artchitecture",
           favorite: true,
@@ -87,7 +87,7 @@ export default {
         {
           id: uuidv4(),
           tag: "Bathroom",
-          img: './src/assets/img/ourproject/art-3.png',
+          img: require("@/assets/img/ourproject/art-3.png"),
           head: "Classic Minimal Bedroom",
           dsc: "Decor / Artchitecture",
           favorite: false,
@@ -95,7 +95,7 @@ export default {
         {
           id: uuidv4(),
           tag: "Bathroom",
-          img: './src/assets/img/ourproject/art-4.png',
+          img: require("@/assets/img/ourproject/art-4.png"),
           head: "Minimal Bedroom",
           dsc: "Decor / Artchitecture",
           favorite: false,
@@ -103,7 +103,7 @@ export default {
         {
           id: uuidv4(),
           tag: "Bathroom",
-          img: './src/assets/img/ourproject/art-5.png',
+          img: require("@/assets/img/ourproject/art-5.png"),
           head: "Minimal Bedroom table",
           dsc: "Decor / Artchitecture",
           favorite: false,
@@ -111,7 +111,7 @@ export default {
         {
           id: uuidv4(),
           tag: "Bathroom",
-          img: './src/assets/img/ourproject/art-6.png',
+          img: require("@/assets/img/ourproject/art-6.png"),
           head: "Minimal Bedroom",
           dsc: "Decor / Artchitecture",
           favorite: false,
@@ -119,7 +119,7 @@ export default {
         {
           id: uuidv4(),
           tag: "Bathroom",
-          img: './src/assets/img/ourproject/art-7.png',
+          img: require("@/assets/img/ourproject/art-7.png"),
           head: "Minimal Bedroom",
           dsc: "Decor / Artchitecture",
           favorite: false,
@@ -127,44 +127,48 @@ export default {
         {
           id: uuidv4(),
           tag: "Bathroom",
-          img: './src/assets/img/ourproject/art-8.png',
+          img: require("@/assets/img/ourproject/art-8.png"),
           head: "Minimal Bedroom",
           dsc: "Decor / Artchitecture",
           favorite: false,
         },
       ],
-    }
+    };
   },
   methods: {
     clickTag(id) {
-      const tags = this.tags
+      const tags = this.tags;
       for (let i = 0; i < tags.length; i++) {
         tags[i].isActive = tags[i].id === id;
-        if(tags[i].id === id) {this.filterTagArticles(tags[i].name)};
+        if (tags[i].id === id) {
+          this.filterTagArticles(tags[i].name);
+        }
       }
-
-
     },
     clickFav(id) {
       const articles = this.articles;
       for (let i = 0; i < articles.length; i++) {
-        if(articles[i].id === id) {
+        if (articles[i].id === id) {
           articles[i].favorite = !articles[i].favorite;
         }
       }
-      this.filterFavArticles()
+      this.filterFavArticles();
     },
     filterFavArticles() {
-      return this.favoriteArticles = this.articles.filter((art) => art.favorite === true);
+      return (this.favoriteArticles = this.articles.filter(
+        (art) => art.favorite === true
+      ));
     },
     filterTagArticles(tag) {
-      return this.currenTagArticles = this.articles.filter((art) => art.tag === tag);
-    }
+      return (this.currenTagArticles = this.articles.filter(
+        (art) => art.tag === tag
+      ));
+    },
   },
   created() {
     this.currenTagArticles = this.articles;
-  }
-}
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -172,7 +176,7 @@ export default {
 
 %btnTagFont {
   color: $colorTitle;
-  font-family: 'Jost', sans-serif;
+  font-family: "Jost", sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
@@ -198,7 +202,7 @@ export default {
 
   &__block-head {
     padding: 41px 78px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-radius: 37px 37px 0 0;
     text-align: center;
   }
@@ -234,7 +238,7 @@ export default {
 }
 
 .btn-active {
-  color: #FFFFFF;
+  color: #ffffff;
   background-color: $colorMain;
 }
 
