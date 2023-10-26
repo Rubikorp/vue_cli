@@ -1,5 +1,4 @@
 <template>
-  <HeaderComponent />
   <div class="bg-head"></div>
   <section class="project-section center">
     <div class="project">
@@ -9,20 +8,15 @@
     </div>
   </section>
   <SliderComponent :slider="sliders" />
-  <FooterComponent />
 </template>
 
 <script>
-import FooterComponent from "@/components/FooterComponent.vue";
-import HeaderComponent from "@/components/HeaderComponent.vue";
 import SliderComponent from "@/components/SliderComponent.vue";
 import { mapGetters } from "vuex";
 
 export default {
   name: "ProjectDetail",
   components: {
-    HeaderComponent,
-    FooterComponent,
     SliderComponent,
   },
   data() {

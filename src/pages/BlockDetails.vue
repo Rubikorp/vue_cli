@@ -44,7 +44,7 @@
         <ul class="tags__list">
           <li
               class="tags__item"
-              v-for="tag in tags">
+              v-for="(tag, index) in tags" :key="index">
             <a
                 href="#target-up"
                 :class="[ tag.isActive ? 'active' : '' ] + ' ' + 'tags__button'"
